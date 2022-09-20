@@ -4,3 +4,8 @@ parts:
   - caption: Stellar Structure
     chapters:
     - file: simple-stellar-structure/f22-stellar-model-hw1
+  - caption: Thermodynamics
+    chapters:
+    - file: thermo/thermodynamics
+
+
