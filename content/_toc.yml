@@ -7,5 +7,6 @@ parts:
   - caption: Thermodynamics
     chapters:
     - file: thermo/thermodynamics
-
-
+  - caption: Integrating ODEs
+    - file: orbits_example/ODEs-partI.ipynb
+    - file: orbits_example/ODEs-partII.ipynb
