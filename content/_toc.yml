@@ -11,3 +11,4 @@ parts:
     chapters:
     - file: orbits_example/ODEs-partI
     - file: orbits_example/ODEs-partII
+    - file: orbits_example/cxx
