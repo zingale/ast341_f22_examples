@@ -61,6 +61,8 @@ std::vector<OrbitState> integrate(const double a, const double tmax, const doubl
 
     // assume circular orbit on the x-axis, counter-clockwise orbit
 
+    // we'll do 2nd order RK
+
     state.t = 0.0;
     state.x = a;
     state.y = 0.0;
@@ -81,6 +83,19 @@ std::vector<OrbitState> integrate(const double a, const double tmax, const doubl
         // get the derivatives
         auto state_derivs = rhs(state);
 
+        // storage for the state at n+1/2
+        OrbitState tmp{};
+
+        // estimate the state at n+1/2
+        tmp.t = state.t + 0.5 * dt;
+        tmp.x = state.x + state_derivs.x * 0.5 * dt;
+        tmp.y = state.y + state_derivs.y * 0.5 * dt;
+        tmp.vx = state.vx + state_derivs.vx * 0.5 * dt;
+        tmp.vy = state.vy + state_derivs.vy * 0.5 * dt;
+
+        // get the derivatives using the acceleration at n+1/2
+        state_derivs = rhs(tmp);
+
         // update the state
         state.t += dt;
         state.x += state_derivs.x * dt;
@@ -98,7 +113,7 @@ std::vector<OrbitState> integrate(const double a, const double tmax, const doubl
 int main() {
 
     double tmax = 1.0;
-    double dt = 0.001;
+    double dt = 0.01;
     double a = 1.0;      // 1 AU
 
     auto orbit_history = integrate(a, tmax, dt);
