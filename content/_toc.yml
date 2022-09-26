@@ -12,3 +12,7 @@ parts:
     - file: orbits_example/ODEs-partI
     - file: orbits_example/ODEs-partII
     - file: orbits_example/cxx
+  - caption: PP-CNO
+    chapters:
+    - file: reactions/pp-cno
+
