@@ -16,16 +16,16 @@ public:
     std::vector<double> xi;
     std::vector<State> sol;
 
-    int n;
+    double n;
 
-    Polytrope(const int _n=1.5) {
-        assert(_n > 0);
+    Polytrope(const double _n=1.5) {
+        assert(_n >= 0);
         n = _n;
     }
 
     State rhs(const double x, const State& s) {
 
-        State f{0.0};
+        State f{};
 
         f.theta = s.dtheta_dxi;
 
@@ -50,7 +50,7 @@ public:
 
         // storage for the stages
 
-        State tmp{0.0};
+        State tmp{};
 
         auto h = h0;
 
@@ -79,7 +79,7 @@ public:
 
             y.theta += (1./6.) * h * (k1.theta + 2.0*k2.theta + 2.0*k3.theta + k4.theta);
             y.dtheta_dxi += (1./6.) * h * (k1.dtheta_dxi + 2.0*k2.dtheta_dxi + 2.0*k3.dtheta_dxi + k4.dtheta_dxi);
-            
+
 
             _xi += h;
 
@@ -103,16 +103,42 @@ public:
         }
     }
 
+    double get_xi1() {
+        if (!xi.empty()) {
+            return xi.back();
+        } else {
+            return -1;
+        }
+    }
+
+    double get_minus_xisq_dtheta_dxi() {
+        if (!xi.empty() && !sol.empty()) {
+            auto xi_last = xi.back();
+            auto sol_last = sol.back();
+
+            return -xi_last * xi_last * sol_last.dtheta_dxi;
+        } else {
+            return -1;
+        }
+    }
 };
 
 
 int main() {
 
-    Polytrope p(1.5);
+    for (int imodel = 0; imodel <= 9; ++imodel) {
 
-    p.integrate();
+        double n = static_cast<double>(imodel) / 2.0;
 
-    for (int n = 0; n < p.npts(); ++n) {
-        std::cout << std::setw(20) << p.xi[n] << std::setw(20) << p.sol[n].theta << std::endl;
+        Polytrope p(n);
+        p.integrate();
+
+        if (imodel == 0) {
+            std::cout << "#" << std::setw(4) << "n" << std::setw(22) << "xi_1" << std::setw(22) << "-xi**2 dtheta/dxi |_xi1" << std::endl;
+        }
+        auto xi1 = p.get_xi1();
+        auto minus_xisq_dtheta_dxi = p.get_minus_xisq_dtheta_dxi();
+
+        std::cout << std::setw(4) << n << std::setw(22) << xi1 << std::setw(22) << minus_xisq_dtheta_dxi << std::endl;
     }
 }
