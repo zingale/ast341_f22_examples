@@ -15,4 +15,8 @@ parts:
   - caption: PP-CNO
     chapters:
     - file: reactions/pp-cno
+  - caption: Lane-Emden
+    chapters:
+    - file: lane-emden/lane-emden
+    - file: lane-emden/le_cxx
 
