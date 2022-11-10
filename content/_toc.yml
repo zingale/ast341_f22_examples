@@ -22,4 +22,8 @@ parts:
   - caption: MESA Models
     chapters:
     - file: mesa-models/mesa-stellar-models
+  - caption: Explosions
+    chapters:
+    - file: hotcno/hot-CNO-breakout-example
+
 
