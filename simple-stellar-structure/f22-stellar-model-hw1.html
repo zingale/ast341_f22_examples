@@ -1,0 +1,1001 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Simple Stellar Structure &#8212; AST 341 Fall 2022</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Thermodynamics and the Maxwell-Boltzmann distribution" href="../thermo/thermodynamics.html" />
+    <link rel="prev" title="AST 341" href="../intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">AST 341 Fall 2022</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    AST 341
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Stellar Structure
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Simple Stellar Structure
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Thermodynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../thermo/thermodynamics.html">
+   Thermodynamics and the Maxwell-Boltzmann distribution
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Integrating ODEs
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../orbits_example/ODEs-partI.html">
+   Basic Methods for ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../orbits_example/ODEs-partII.html">
+   Higher-order Accurate ODE Integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../orbits_example/cxx.html">
+   C++ Example
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  PP-CNO
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reactions/pp-cno.html">
+   Comparison of PP and CNO burning
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lane-Emden
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lane-emden/lane-emden.html">
+   Lane-Emden polytrope equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lane-emden/le_cxx.html">
+   C++ Example
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  MESA Models
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../mesa-models/mesa-stellar-models.html">
+   MESA Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Explosions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../hotcno/hot-CNO-breakout-example.html">
+   hot-CNO and breakout
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../equipotentials/equipotentials.html">
+   Equipotentials
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/zingale/ast341_f22_examples/main?urlpath=tree/content/simple-stellar-structure/f22-stellar-model-hw1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/zingale/ast341_f22_examples/blob/main/content/simple-stellar-structure/f22-stellar-model-hw1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/zingale/ast341_f22_examples"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/zingale/ast341_f22_examples/issues/new?title=Issue%20on%20page%20%2Fsimple-stellar-structure/f22-stellar-model-hw1.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/simple-stellar-structure/f22-stellar-model-hw1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Simple Stellar Structure
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#homework-1-solutions">
+     homework #1 solutions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a">
+     a.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b">
+     b.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c">
+     c.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   2.
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     a.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     b.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     c.
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Simple Stellar Structure</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Simple Stellar Structure
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#homework-1-solutions">
+     homework #1 solutions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a">
+     a.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b">
+     b.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c">
+     c.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   2.
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     a.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     b.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     c.
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="simple-stellar-structure">
+<h1>Simple Stellar Structure<a class="headerlink" href="#simple-stellar-structure" title="Permalink to this headline">#</a></h1>
+<section id="homework-1-solutions">
+<h2>homework #1 solutions<a class="headerlink" href="#homework-1-solutions" title="Permalink to this headline">#</a></h2>
+<p>I’m using SymPy – the symbolic math library for python – to do the algebra here.  The next 2 cells load SymPy for interactive work and define the variables we are going to use (and treat as math symbols)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">init_session</span>
+<span class="n">init_session</span><span class="p">()</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IPython console for SymPy 1.10.1 (Python 3.7.15-64-bit) (ground types: python)
+
+These commands were executed:
+&gt;&gt;&gt; from sympy import *
+&gt;&gt;&gt; x, y, z, t = symbols(&#39;x y z t&#39;)
+&gt;&gt;&gt; k, m, n = symbols(&#39;k m n&#39;, integer=True)
+&gt;&gt;&gt; f, g, h = symbols(&#39;f g h&#39;, cls=Function)
+&gt;&gt;&gt; init_printing()
+
+Documentation can be found at https://docs.sympy.org/1.10.1/
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;rho&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">Function</span><span class="p">)</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;q_c&#39;</span><span class="p">)</span>
+<span class="n">pc</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;p_c&#39;</span><span class="p">)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">)</span>
+<span class="n">Mstar</span><span class="p">,</span> <span class="n">Rstar</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;M_\star R_\star&#39;</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;xi&#39;</span><span class="p">)</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;beta&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>1.<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p>Consider a mass profile in a star:</p>
+<div class="math notranslate nohighlight">
+\[m(r) = 4\pi R^3 \beta \left [-\frac{r \cos(\pi r / R)}{\pi R} + \frac{\sin(\pi r /R)}{\pi^2}\right ]\]</div>
+<p>where <span class="math notranslate nohighlight">\(\beta\)</span> is a constant</p>
+<section id="a">
+<h2>a.<a class="headerlink" href="#a" title="Permalink to this headline">#</a></h2>
+<p>What is the density profile, <span class="math notranslate nohighlight">\(\rho(r)\)</span>, that gives rise to this mass?</p>
+<p>First let’s plot the function <span class="math notranslate nohighlight">\(m(r)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">Rstar</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">beta</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">r</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">r</span><span class="o">/</span><span class="n">Rstar</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">pi</span> <span class="o">*</span> <span class="n">Rstar</span><span class="p">)</span> <span class="o">+</span> <span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">r</span><span class="o">/</span><span class="n">Rstar</span><span class="p">)</span> <span class="o">/</span> <span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_6_0.png" src="../_images/f22-stellar-model-hw1_6_0.png" />
+</div>
+</div>
+<p>let’s define</p>
+<div class="math notranslate nohighlight">
+\[\xi = \frac{r}{R}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># to plot it, we need to make it dimensionless</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">m</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">Rstar</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">beta</span><span class="p">))</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">xi</span><span class="o">*</span><span class="n">Rstar</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$r/R$&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$m(r)/(4\pi R_\star^3\beta)$&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_8_0.png" src="../_images/f22-stellar-model-hw1_8_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7f0b701f77d0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see that the mass monotonically increases toward the surface, we we expect.  Further, <span class="math notranslate nohighlight">\(m(r=0) = 0\)</span>, as expected.</p>
+<p>Now we get the density as</p>
+<div class="math notranslate nohighlight">
+\[\rho = \frac{1}{4\pi r^2} \frac{dM}{dr}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">simplify</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span>
+<span class="n">rho</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_11_0.png" src="../_images/f22-stellar-model-hw1_11_0.png" />
+</div>
+</div>
+</section>
+<section id="b">
+<h2>b.<a class="headerlink" href="#b" title="Permalink to this headline">#</a></h2>
+<p>What is <span class="math notranslate nohighlight">\(\beta\)</span> in terms of the central density?</p>
+<p>The central density is just <span class="math notranslate nohighlight">\(\rho(0)\)</span>, but we because of the form of <span class="math notranslate nohighlight">\(\rho(r)\)</span> here, we need to consider the limit:</p>
+<div class="math notranslate nohighlight">
+\[\rho_c = \lim_{r \rightarrow 0} \rho(r)\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhoc</span> <span class="o">=</span> <span class="n">rho</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">rhoc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_14_0.png" src="../_images/f22-stellar-model-hw1_14_0.png" />
+</div>
+</div>
+<p>So <span class="math notranslate nohighlight">\(\beta = \rho_c/\pi\)</span>.  We can rewrite the density in terms of <span class="math notranslate nohighlight">\(\rho_c\)</span> now</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhoc</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;rho_c&quot;</span><span class="p">)</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">simplify</span><span class="p">(</span><span class="n">rho</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">rhoc</span><span class="o">/</span><span class="n">pi</span><span class="p">))</span>
+<span class="n">rho</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_16_0.png" src="../_images/f22-stellar-model-hw1_16_0.png" />
+</div>
+</div>
+<p>We can also rewrite the mass, <span class="math notranslate nohighlight">\(m(r)\)</span>, in terms of <span class="math notranslate nohighlight">\(\rho_c\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">simplify</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">rhoc</span><span class="o">/</span><span class="n">pi</span><span class="p">))</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_18_0.png" src="../_images/f22-stellar-model-hw1_18_0.png" />
+</div>
+</div>
+<p>Notice that the density vanishes at <span class="math notranslate nohighlight">\(r = R_\star\)</span>.  Now let’s plot this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">simplify</span><span class="p">((</span><span class="n">rho</span><span class="o">/</span><span class="n">rhoc</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">xi</span><span class="o">*</span><span class="n">Rstar</span><span class="p">))</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$r/R$&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\rho(r)/\rho_c$&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_20_0.png" src="../_images/f22-stellar-model-hw1_20_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x7f0b67ff39d0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="c">
+<h2>c.<a class="headerlink" href="#c" title="Permalink to this headline">#</a></h2>
+<p>What is the ratio of the central density to the average density, <span class="math notranslate nohighlight">\(\rho_c / \bar{\rho}\)</span>?</p>
+<p>The average density is just the total mass divided by the volume of the star.  First we get the total mass, <span class="math notranslate nohighlight">\(M_\star = m(R_\star)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Mstar</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Rstar</span><span class="p">)</span>
+<span class="n">Mstar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_23_0.png" src="../_images/f22-stellar-model-hw1_23_0.png" />
+</div>
+</div>
+<p>and now we compute</p>
+<div class="math notranslate nohighlight">
+\[\bar{\rho} = \frac{M_\star}{(4/3) \pi R_\star^3}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhobar</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\bar{\rho}&quot;</span><span class="p">)</span>
+<span class="n">rhobar</span> <span class="o">=</span> <span class="n">Mstar</span> <span class="o">/</span> <span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">Rstar</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">rhobar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_25_0.png" src="../_images/f22-stellar-model-hw1_25_0.png" />
+</div>
+</div>
+<p>So</p>
+<div class="math notranslate nohighlight">
+\[\frac{\rho_c}{\bar{\rho}} = \frac{\pi^2}{3}\]</div>
+<p>Alternately, we can do a volume-weighted average of <span class="math notranslate nohighlight">\(\rho(r)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\bar{\rho} = \frac{1}{V} \int_0^R 4\pi r^2 \rho(r) dr\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">integrate</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">rho</span><span class="p">,</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Rstar</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">Rstar</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_28_0.png" src="../_images/f22-stellar-model-hw1_28_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id2">
+<h1>2.<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h1>
+<p>Now we consider:</p>
+<div class="math notranslate nohighlight">
+\[\rho(r) = \rho_c (1 - r/R_\star)\]</div>
+<section id="id3">
+<h2>a.<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<p>What is the central density in terms of the total mass?</p>
+<p>We need an expression for <span class="math notranslate nohighlight">\(m(r)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[m(r) = 4\pi \int_0^r r^2 \rho(r) dr\]</div>
+<p>So we start with this integral</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span> <span class="o">=</span> <span class="n">rhoc</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">r</span><span class="o">/</span><span class="n">Rstar</span><span class="p">)</span>
+<span class="n">rho</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_32_0.png" src="../_images/f22-stellar-model-hw1_32_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">integrate</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">xi</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">rho</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">xi</span><span class="p">),</span> <span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="p">))</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_33_0.png" src="../_images/f22-stellar-model-hw1_33_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Rstar</span><span class="p">)</span>
+<span class="n">M</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_34_0.png" src="../_images/f22-stellar-model-hw1_34_0.png" />
+</div>
+</div>
+<p>and then we can find <span class="math notranslate nohighlight">\(\rho_c\)</span> in terms of <span class="math notranslate nohighlight">\(M\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Mstar</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;M_\star&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rc</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">Eq</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">Mstar</span><span class="p">),</span> <span class="n">rhoc</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">rc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_37_0.png" src="../_images/f22-stellar-model-hw1_37_0.png" />
+</div>
+</div>
+</section>
+<section id="id4">
+<h2>b.<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<p>Now we can integrate HSE.  We will do this as</p>
+<div class="math notranslate nohighlight">
+\[P(R) - P(0) = \int_0^{R_\star} \frac{-Gm(r)}{r^2} \rho dr\]</div>
+<p>Here I’ve written the integral in terms of <span class="math notranslate nohighlight">\(r\)</span>.</p>
+<p>Note that since <span class="math notranslate nohighlight">\(P(R) = 0\)</span>, this is just</p>
+<div class="math notranslate nohighlight">
+\[P_c = \int_0^{R_\star} \frac{Gm(r)}{r^2} \rho dr\]</div>
+<p>We’ll substitute in our expressions for <span class="math notranslate nohighlight">\(m(r)\)</span> and <span class="math notranslate nohighlight">\(\rho(r)\)</span> in the integrand.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pc</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;p_c&quot;</span><span class="p">)</span>
+<span class="n">pc</span> <span class="o">=</span> <span class="n">integrate</span><span class="p">(</span><span class="n">G</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">rho</span><span class="p">,</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Rstar</span><span class="p">))</span>
+<span class="n">pc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_40_0.png" src="../_images/f22-stellar-model-hw1_40_0.png" />
+</div>
+</div>
+<p>This is <span class="math notranslate nohighlight">\(p_c\)</span> in terms of <span class="math notranslate nohighlight">\(\rho_c\)</span>, but we can substitute in find the total mass of the star easily:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pc</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">rhoc</span><span class="p">,</span> <span class="n">rc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_42_0.png" src="../_images/f22-stellar-model-hw1_42_0.png" />
+</div>
+</div>
+<p>From this expression, we see that <span class="math notranslate nohighlight">\(f = 5/(4\pi)\)</span>.</p>
+</section>
+<section id="id5">
+<h2>c.<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<p>What is the total gravitational potential energy, <span class="math notranslate nohighlight">\(\Omega\)</span>, of the star?</p>
+<p>We integrate</p>
+<div class="math notranslate nohighlight">
+\[\Omega = -\int_0^{M_\star} \frac{Gm(r)}{r} dm = -\int_0^{R_\star} \frac{G m(r)}{r} 4\pi r^2 \rho dr\]</div>
+<p>To do this, we use our expression for <span class="math notranslate nohighlight">\(m(r)\)</span> and <span class="math notranslate nohighlight">\(\rho(r)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Omega</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;Omega&quot;</span><span class="p">)</span>
+<span class="n">Omega</span> <span class="o">=</span> <span class="n">integrate</span><span class="p">(</span><span class="o">-</span><span class="n">G</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="n">rho</span><span class="p">,</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Rstar</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Omega</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_47_0.png" src="../_images/f22-stellar-model-hw1_47_0.png" />
+</div>
+</div>
+<p>We can rewrite this in terms of mass by eliminating <span class="math notranslate nohighlight">\(\rho_c\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Omega</span> <span class="o">=</span> <span class="n">Omega</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">rhoc</span><span class="p">,</span> <span class="n">rc</span><span class="p">)</span>
+<span class="n">Omega</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f22-stellar-model-hw1_49_0.png" src="../_images/f22-stellar-model-hw1_49_0.png" />
+</div>
+</div>
+<p>So this shows that <span class="math notranslate nohighlight">\(\alpha = 26/35\)</span>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./simple-stellar-structure"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">AST 341</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../thermo/thermodynamics.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Thermodynamics and the Maxwell-Boltzmann distribution</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href="https://zingale.github.io">Michael Zingale</a><br/>
+  
+    <div class="extra_footer">
+      <p>
+&copy; 2021; CC-BY-NC-SA 4.0
+<p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
